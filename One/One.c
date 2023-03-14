@@ -4,11 +4,29 @@
 
 #include "One.h"
 #include <stdio.h>
-
+#include <string.h>
+#include <ctype.h>
 bool is_isogram(char phrase[]){
 
+    if(phrase == NULL) return false;
 
-
+    int phraseLength = strlen(phrase);
+    for(int i = 0; i < phraseLength; i += 1){
+        if(phrase[i] == ' '|| phrase[i] == '-'){
+            continue;
+        }
+        for(int j = i + 1; j < phraseLength; j += 1){
+            if(phrase[i] == ' ' || phrase[j] == '-'){
+                continue;
+            }
+            if(tolower(phrase[i]) == tolower(phrase[j])){
+                printf("The string of %s is not an isogram\n", phrase);
+                return false;
+            }
+        }
+    }
+    printf("The string of %s is an isogram\n", phrase);
+    return true;
 }
 
 bool is_armstrong_number(int candidate){
