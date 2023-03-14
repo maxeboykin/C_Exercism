@@ -4,26 +4,31 @@
 
 #include "One.h"
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdint.h>
 bool is_isogram(char phrase[]){
 
-    if(phrase == NULL) return false;
+    if(!phrase) return false; // doesnt equal null
 
-    int phraseLength = strlen(phrase);
-    for(int i = 0; i < phraseLength; i += 1){
-        if(phrase[i] == ' '|| phrase[i] == '-'){
-            continue;
+    uint32_t letter_flags = 0;
+    char sub = 'a';
+    while (*phrase) { // doesnt equal '/0' EOF
+        char letter = *phrase;
+        if (letter >= 'a' && letter <= 'z')
+            sub = 'a';
+        else if (letter >= 'A' && letter <= 'Z')
+            sub = 'A';
+        else
+            sub = 'X';
+
+        if (sub != 'X'){
+            if((letter_flags & (1 << (letter - sub))) != 0) // compares bits in letter flags with 1 with letter - sub
+                return false; // if letter_flags is 1 (letter already in that bit then return 1) which is not 0
+                // if letter flags is 0, the rightside is always 1 so its 0 & 1 which is 0 so it still is true
+            else
+                letter_flags |= (1 << (letter - sub));
         }
-        for(int j = i + 1; j < phraseLength; j += 1){
-            if(phrase[i] == ' ' || phrase[j] == '-'){
-                continue;
-            }
-            if(tolower(phrase[i]) == tolower(phrase[j])){
-                printf("The string of %s is not an isogram\n", phrase);
-                return false;
-            }
-        }
+        printf("The current value of string is %s \n", phrase);
+        *phrase++; //increment pointer
     }
     printf("The string of %s is an isogram\n", phrase);
     return true;
@@ -46,3 +51,25 @@ bool is_armstrong_number(int candidate){
     }
     return (int)result == candidate;
 }
+
+
+//bool is_isogram_OLD(char phrase[]){
+//    if(phrase == NULL) return false;
+//    int phraseLength = strlen(phrase);
+//    for(int i = 0; i < phraseLength; i += 1){
+//        if(phrase[i] == ' '|| phrase[i] == '-'){
+//            continue;
+//        }
+//        for(int j = i + 1; j < phraseLength; j += 1){
+//            if(phrase[i] == ' ' || phrase[j] == '-'){
+//                continue;
+//            }
+//            if(tolower(phrase[i]) == tolower(phrase[j])){
+//                printf("The string of %s is not an isogram\n", phrase);
+//                return false;
+//            }
+//        }
+//    }
+//    printf("The string of %s is an isogram\n", phrase);
+//    return true;
+//}
