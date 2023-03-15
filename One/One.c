@@ -3,9 +3,44 @@
 //
 
 #include "One.h"
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
+
+
+unsigned int sum_of_squares(unsigned int number){
+    if(number == 0) return 0;
+    unsigned int sum = 0;
+    for(unsigned int i = 1; i <= number; i += 1){
+        sum += i * i;
+    }
+    return sum;
+}
+
+unsigned int square_of_sum(unsigned int number){
+    if(number == 0) return 0;
+    unsigned int sum = 0;
+    for(unsigned int i = 1; i <= number; i += 1){
+        sum += i;
+    }
+    return sum * sum;
+}
+
+unsigned int difference_of_squares(unsigned int number){
+    unsigned int sum1 = square_of_sum(number);
+    unsigned int sum2 = sum_of_squares(number);
+    return (sum2 > sum1) ? (sum2 - sum1) : (sum1 - sum2);
+}
+
+uint64_t square(uint8_t index){
+    if(index == 1) return 1;
+    return pow(2, index - 1);
+}
+
+uint64_t total(void){
+    int sum = 0;
+    for(uint8_t i = 1; i < 65; i += 1){
+        sum += square(i);
+    }
+    return sum;
+}
 
 int compute(char *lhs, char *rhs){
     if(!lhs || !rhs)
@@ -18,6 +53,7 @@ int compute(char *lhs, char *rhs){
         if(left != right)
             count += 1;
     }
+    // i had just return count; originally
     return (*lhs || *rhs) ? -1 : count; //if one of the lhs or rhs is still not null then we know its -1
 }
 
