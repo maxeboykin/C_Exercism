@@ -5,6 +5,22 @@
 #include "One.h"
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
+
+int compute(char *lhs, char *rhs){
+    if(!lhs || !rhs)
+        return -1;
+
+    int count = 0;
+    for(;*lhs && *rhs; lhs++, rhs++){
+        char left = *lhs;
+        char right = *rhs;
+        if(left != right)
+            count += 1;
+    }
+    return (*lhs || *rhs) ? -1 : count; //if one of the lhs or rhs is still not null then we know its -1
+}
+
 bool is_isogram(char phrase[]){
 
     if(!phrase) return false; // doesnt equal null
