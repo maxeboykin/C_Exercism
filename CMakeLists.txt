@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 project(Exercism C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
-add_executable(Exercism main.c One/One.c One/One.h One/One.h)
-target_link_libraries(Exercism m)
+include_directories(One)
+
+add_executable(Exercism
+        main.c armstrong_numbers.c armstrong_numbers.h hamming.c hamming.h isogram.c isogram.h difference_of_squares.c difference_of_squares.h)
