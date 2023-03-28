@@ -7,7 +7,7 @@
 int main() {
 
     is_isogram("alphbetuy");
-    is_armstrong_number(152);
+   // is_armstrong_number(152);
     compute("ABC", "ABC");
     difference_of_squares(50);
     return 0;
