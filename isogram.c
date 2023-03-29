@@ -20,7 +20,7 @@ bool is_isogram(const char phrase[]){
         else
             sub = 'X';
 
-        if (sub != 'X'){ // https://exercism.org/tracks/c/concepts/bits
+        if (sub != 'X'){ // https://exercism.org/tracks/c/exercises/isogram/approaches/bitfield
             if((letter_flags_mask & (1 << (letter - sub))) != 0) // compares bits in letter flags with 1 with letter - sub
                 return false; // if letter_flags is 1 (letter already in that bit then return 1) which is not 0
             else
