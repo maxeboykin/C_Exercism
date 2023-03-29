@@ -1,9 +1,9 @@
 //
-// Created by Max Boykin on 3/28/23.
+// Created by maxboykin on 3/29/23.
 //
 
-#ifndef C_EXERCISM_GRADE_SCHOOL_H
-#define C_EXERCISM_GRADE_SCHOOL_H
+#ifndef EXERCISM_GRADE_SCHOOL_H
+#define EXERCISM_GRADE_SCHOOL_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -26,4 +26,5 @@ typedef struct {
 void init_roster(roster_t * roster);
 bool add_student(roster_t *roster, const char * student_name, uint8_t student_grade);
 roster_t get_grade(roster_t * roster, uint8_t desired_grade);
-#endif //C_EXERCISM_GRADE_SCHOOL_H
+
+#endif //EXERCISM_GRADE_SCHOOL_H

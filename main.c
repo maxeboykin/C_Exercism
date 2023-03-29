@@ -4,10 +4,12 @@
 #include "isogram.h"
 #include "difference_of_squares.h"
 #include "grains.h"
+#include "square_root.h"
 
 int main() {
 
-    printf("%lu", total());
+    printf("%d", square_root(134));
+    // printf("%lu", total());
     //is_isogram("alphbetuy");
    // is_armstrong_number(152);
     //compute("ABC", "ABC");
